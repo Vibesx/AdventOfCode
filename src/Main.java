@@ -13,6 +13,7 @@ public class Main {
 
         /* Problem 2 */
         Problem2 problem2 = new Problem2();
-        problem2.solve_part1();
+//        problem2.solve_part1();
+//        problem2.solve_part2();
     }
 }

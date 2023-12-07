@@ -20,11 +20,31 @@ public class Problem2 {
         System.out.println(sum);
     }
 
+    public void solve_part2() {
+        int sum = 0;
+        for(String line : input) {
+            sum += powerOfSet(line);
+        }
+        System.out.println(sum);
+    }
+
+    private int powerOfSet(String line) {
+        Map<String, Integer> cubeMaxes = new HashMap<>();
+        cubeMaxes.put("green", 0);
+        cubeMaxes.put("blue", 0);
+        cubeMaxes.put("red", 0);
+        String gameSets = line.split(":")[1];
+        for (String setOfCubes : gameSets.split("[,;]")) {
+            Integer number = Integer.valueOf(setOfCubes.trim().split(" ")[0]);
+            String color = setOfCubes.trim().split(" ")[1];
+            if(number > cubeMaxes.get(color)) {
+                cubeMaxes.put(color, number);
+            }
+        }
+        return Math.multiplyExact(cubeMaxes.get("red"), Math.multiplyExact(cubeMaxes.get("green"), cubeMaxes.get("blue")));
+    }
+
     private Boolean gameIsPossible(String input) {
-        Map<String, Integer> cubesTotals = new HashMap<>();
-        cubesTotals.put("green", 0);
-        cubesTotals.put("blue", 0);
-        cubesTotals.put("red", 0);
         String gameSets = input.split(":")[1];
         for (String setOfCubes : gameSets.split("[,;]")) {
             Integer number = Integer.valueOf(setOfCubes.trim().split(" ")[0]);
